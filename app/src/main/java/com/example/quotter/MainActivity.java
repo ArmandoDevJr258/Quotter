@@ -1,18 +1,26 @@
 package com.example.quotter;
 
+import static android.view.View.GONE;
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Context;
 import android.content.Intent;
 import android.media.AudioAttributes;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,26 +44,42 @@ import okhttp3.Response;
 public class MainActivity extends AppCompatActivity {
 
     TextView quoteText, authorText;
-    private Button btnsave, btnfetch, btnlike, btnsearch, btnshare, btnclose;
+    private Button btnSave, btnFetch, btnLike, btnSearch, btnShare, btnClose,btnmenu;
     private BottomNavigationView bn;
     private ImageView backgroundImage;
     private EditText input;
-    OkHttpClient client = new OkHttpClient();
-    MediaPlayer mediaPlayer;
-    private DatabaseHelper  dbHelper;
+    private ListView listViewQuotes;
+    private DatabaseHelper dbHelper;
+    private DrawerLayout drawerLayout;
 
+    // Class to hold both the text and author of a quote
     static class Quote {
         String text;
         String author;
 
         Quote(String text, String author) {
             this.text = text;
+            // Ensure author is never null or the string "null"
             this.author = (author == null || author.equals("null")) ? "Unknown" : author;
+        }
+
+        // Override toString for easy display in the ArrayAdapter
+        @Override
+        public String toString() {
+            return "\"" + text + "\" - " + author;
         }
     }
 
-    List<Quote> quotesList = new ArrayList<>();
-    Random random = new Random();
+    // Master list of all quotes fetched from the API
+    private List<Quote> quotesList = new ArrayList<>();
+    // List to hold quotes that match the current search query
+    private List<Quote> filteredQuotesList = new ArrayList<>();
+    // Adapter for the search results ListView
+    private ArrayAdapter<Quote> arrayAdapter;
+
+    private Random random = new Random();
+    private OkHttpClient client = new OkHttpClient();
+    private MediaPlayer mediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,23 +88,100 @@ public class MainActivity extends AppCompatActivity {
         dbHelper = new DatabaseHelper(this);
 
         // Initialize UI elements
+        initializeViews();
+
+        // Setup the adapter for the search results list view
+        arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, filteredQuotesList);
+        listViewQuotes.setAdapter(arrayAdapter);
+
+        // Load initial data
+        loadRandomBackground();
+        loadMultipleZenQuotes();
+        setupChillhopStream();
+
+        // Setup button listeners
+        setupListeners();
+    }
+
+    private void initializeViews() {
         quoteText = findViewById(R.id.quoteText);
         authorText = findViewById(R.id.authorText);
-        btnfetch = findViewById(R.id.btnfetch);
-        btnsave = findViewById(R.id.btnsave);
-        btnlike = findViewById(R.id.btnlike);
-        btnsearch = findViewById(R.id.btnsearch);
-        btnshare = findViewById(R.id.btnshare);
+        btnFetch = findViewById(R.id.btnfetch);
+        btnSave = findViewById(R.id.btnsave);
+        btnLike = findViewById(R.id.btnlike);
+        btnSearch = findViewById(R.id.btnsearch);
+        btnShare = findViewById(R.id.btnshare);
         input = findViewById(R.id.input);
-        btnclose = findViewById(R.id.btnclose);
+        btnClose = findViewById(R.id.btnclose);
         backgroundImage = findViewById(R.id.backgroundImage);
         bn = findViewById(R.id.bottomnavegation);
+        listViewQuotes = findViewById(R.id.listViewQuotes);
+        btnmenu = findViewById(R.id.btnmenu);
+    }
 
-        // Load random background image into ImageView
-        loadRandomBackground();
+    private void setupListeners() {
+        // --- SEARCH FUNCTIONALITY ---
 
-        // Share quote button
-        btnshare.setOnClickListener(v -> {
+        // Show search input and list view
+        btnSearch.setOnClickListener(v -> {
+            input.setVisibility(VISIBLE);
+            btnClose.setVisibility(VISIBLE);
+            listViewQuotes.setVisibility(VISIBLE);
+            btnSearch.setVisibility(INVISIBLE);
+            input.requestFocus();
+            showKeyboard();
+        });
+
+        // Hide search input and list view
+        btnClose.setOnClickListener(v -> {
+            input.setVisibility(INVISIBLE);
+            btnClose.setVisibility(INVISIBLE);
+            listViewQuotes.setVisibility(GONE);
+            btnSearch.setVisibility(VISIBLE);
+            input.setText(""); // Clear search text
+            hideKeyboard();
+        });
+        btnmenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawerLayout.setVisibility(VISIBLE);
+
+            }
+        });
+
+        // Filter quotes in real-time as the user types
+        input.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                filterQuotes(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {}
+        });
+
+        // Handle clicks on search results
+        listViewQuotes.setOnItemClickListener((parent, view, position, id) -> {
+            if (!filteredQuotesList.isEmpty()) {
+                Quote selectedQuote = filteredQuotesList.get(position);
+                displayQuote(selectedQuote);
+                // Simulate a click on the close button to hide the search UI
+                btnClose.performClick();
+            }
+        });
+
+        // --- OTHER BUTTONS ---
+
+        btnFetch.setOnClickListener(v -> {
+            btnLike.setBackgroundResource(R.drawable.like_svgrepo_com__3_);
+            showRandomQuote();
+            loadRandomBackground();
+        });
+
+        btnShare.setOnClickListener(v -> {
             String quote = quoteText.getText().toString();
             String author = authorText.getText().toString();
             Intent shareIntent = new Intent(Intent.ACTION_SEND);
@@ -89,67 +190,58 @@ public class MainActivity extends AppCompatActivity {
             startActivity(Intent.createChooser(shareIntent, "Share via"));
         });
 
-        // Toggle search input visibility
-        btnsearch.setOnClickListener(v -> {
-            input.setVisibility(VISIBLE);
-            btnsearch.setVisibility(INVISIBLE);
-            btnclose.setVisibility(VISIBLE);
+        btnSave.setOnClickListener(v -> {
+            String quote = quoteText.getText().toString().trim();
+            if (!quote.isEmpty() && !quote.equals("\"\"")) {
+                dbHelper.saveQuote(quote);
+                Toast.makeText(MainActivity.this, "Quote saved!", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(MainActivity.this, "No quote to save.", Toast.LENGTH_SHORT).show();
+            }
         });
 
-        btnclose.setOnClickListener(v -> {
-            input.setVisibility(INVISIBLE);
-            btnsearch.setVisibility(VISIBLE);
-            btnclose.setVisibility(INVISIBLE);
+        btnLike.setOnClickListener(v -> {
+            btnLike.setBackgroundResource(R.drawable.like_svgrepo_com__5_);
         });
 
-        // Like & Save button effects
-        btnlike.setOnClickListener(v -> btnlike.setBackgroundResource(R.drawable.like_svgrepo_com__5_));
-        btnsave.setOnClickListener(v -> btnsave.setBackgroundResource(R.drawable.bookmark_filled_svgrepo_com));
-
-        // Bottom navigation item selection
         bn.setOnItemSelectedListener(item -> {
-            if (item.getItemId() == R.id.home) {
-                startActivity(new Intent(MainActivity.this, MainActivity.class));
+            int itemId = item.getItemId();
+            if (itemId == R.id.home) {
+                // Already on the home screen, do nothing to prevent reloading
                 return true;
-            } else if (item.getItemId() == R.id.saved) {
+            } else if (itemId == R.id.saved) {
                 startActivity(new Intent(MainActivity.this, MainActivity2.class));
                 return true;
             }
             return false;
         });
+    }
 
+    /**
+     * Filters the master quotes list based on a search query and updates the ListView.
+     * @param query The text to search for in quote text and author names.
+     */
+    private void filterQuotes(String query) {
+        filteredQuotesList.clear();
+        if (query.isEmpty()) {
+            arrayAdapter.notifyDataSetChanged();
+            return;
+        }
 
-        btnsave.setOnClickListener(v -> {
-            String quote = quoteText.getText().toString().trim();
-            if (!quote.isEmpty()) {
-                dbHelper.saveQuote(quote);
-                Toast.makeText(MainActivity.this, "Quote saved!", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(MainActivity.this, "No quote to save", Toast.LENGTH_SHORT).show();
+        String lowerCaseQuery = query.toLowerCase();
+        for (Quote quote : quotesList) {
+            if (quote.text.toLowerCase().contains(lowerCaseQuery) ||
+                    quote.author.toLowerCase().contains(lowerCaseQuery)) {
+                filteredQuotesList.add(quote);
             }
-        });
-
-
-        // Fetch new random quote on button click
-        btnfetch.setOnClickListener(v -> {
-            btnlike.setBackgroundResource(R.drawable.like_svgrepo_com__3_);
-            btnsave.setBackgroundResource(R.drawable.saved_svgrepo_com);
-            showRandomQuote();
-            loadRandomBackground();
-        });
-
-        setupChillhopStream();
-        loadMultipleZenQuotes();
+        }
+        arrayAdapter.notifyDataSetChanged();
     }
 
     private void loadRandomBackground() {
-        int width = 1080;
-        int height = 1920;
-        String imageUrl = "https://picsum.photos/" + width + "/" + height + "?random=" + random.nextInt(1000);
-
-        Picasso.get()
-                .load(imageUrl)
-                .into(backgroundImage);
+        // Using a fixed size for better caching and performance
+        String imageUrl = "https://picsum.photos/1080/1920?random=" + random.nextInt(1000);
+        Picasso.get().load(imageUrl).into(backgroundImage);
     }
 
     private void loadMultipleZenQuotes() {
@@ -160,13 +252,13 @@ public class MainActivity extends AppCompatActivity {
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                runOnUiThread(() -> quoteText.setText("Failed: " + e.getMessage()));
+                runOnUiThread(() -> Toast.makeText(MainActivity.this, "Failed to load quotes", Toast.LENGTH_SHORT).show());
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                if (response.isSuccessful()) {
-                    String json = response.body().string();
+                if (response.isSuccessful() && response.body() != null) {
+                    final String json = response.body().string();
                     try {
                         JSONArray array = new JSONArray(json);
                         quotesList.clear();
@@ -176,14 +268,26 @@ public class MainActivity extends AppCompatActivity {
                         }
                         runOnUiThread(MainActivity.this::showRandomQuote);
                     } catch (Exception e) {
-                        runOnUiThread(() -> quoteText.setText("Error parsing quotes"));
+                        runOnUiThread(() -> Toast.makeText(MainActivity.this, "Error parsing quotes", Toast.LENGTH_SHORT).show());
                     }
                 } else {
-                    runOnUiThread(() -> quoteText.setText("Error: " + response.code()));
+                    runOnUiThread(() -> Toast.makeText(MainActivity.this, "API Error: " + response.code(), Toast.LENGTH_SHORT).show());
                 }
             }
         });
     }
+
+    /**
+     * Displays a specific quote object in the main UI.
+     * @param quote The Quote object to display.
+     */
+    private void displayQuote(Quote quote) {
+        if (quote != null) {
+            quoteText.setText("\"" + quote.text + "\"");
+            authorText.setText("- " + quote.author);
+        }
+    }
+
 
     private void showRandomQuote() {
         if (quotesList.isEmpty()) {
@@ -193,8 +297,7 @@ public class MainActivity extends AppCompatActivity {
         }
         int index = random.nextInt(quotesList.size());
         Quote q = quotesList.get(index);
-        quoteText.setText("\"" + q.text + "\"");
-        authorText.setText("- " + q.author);
+        displayQuote(q);
     }
 
     private void setupChillhopStream() {
@@ -205,26 +308,55 @@ public class MainActivity extends AppCompatActivity {
                     .setUsage(AudioAttributes.USAGE_MEDIA)
                     .build());
             mediaPlayer.setDataSource("https://ice1.somafm.com/groovesalad-128-mp3");
+
             mediaPlayer.setOnPreparedListener(mp -> {
                 mediaPlayer.start();
-                Toast.makeText(MainActivity.this, "Playing ambient lo-fi", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Playing ambient lo-fi.", Toast.LENGTH_SHORT).show();
             });
             mediaPlayer.setOnErrorListener((mp, what, extra) -> {
-                Toast.makeText(MainActivity.this, "Error playing stream", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Error playing stream.", Toast.LENGTH_SHORT).show();
                 return true;
             });
             mediaPlayer.prepareAsync();
+
         } catch (Exception e) {
             e.printStackTrace();
-            Toast.makeText(this, "Failed to load stream", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Failed to load stream.", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    // --- UTILITY METHODS ---
+
+    private void showKeyboard() {
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.showSoftInput(input, InputMethodManager.SHOW_IMPLICIT);
+    }
+
+    private void hideKeyboard() {
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        View view = this.getCurrentFocus();
+        if (view == null) {
+            view = new View(this);
+        }
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        if (mediaPlayer != null && mediaPlayer.isPlaying()) {
-            mediaPlayer.stop();
+        if (mediaPlayer != null) {
+            if (mediaPlayer.isPlaying()) {
+                mediaPlayer.stop();
+            }
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mediaPlayer != null) {
             mediaPlayer.release();
             mediaPlayer = null;
         }
