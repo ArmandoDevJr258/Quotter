@@ -43,8 +43,8 @@ import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView quoteText, authorText;
-    private Button btnSave, btnFetch, btnLike, btnSearch, btnShare, btnClose,btnmenu;
+    TextView quoteText, authorText,settings,aboutus;
+    private Button btnSave, btnFetch, btnLike, btnSearch, btnShare, btnClose,btnmenu,btnhome;
     private BottomNavigationView bn;
     private ImageView backgroundImage;
     private EditText input;
@@ -117,6 +117,9 @@ public class MainActivity extends AppCompatActivity {
         bn = findViewById(R.id.bottomnavegation);
         listViewQuotes = findViewById(R.id.listViewQuotes);
         btnmenu = findViewById(R.id.btnmenu);
+        btnhome= findViewById(R.id.btnhome);
+        settings= findViewById(R.id.settings);
+        aboutus = findViewById(R.id.aboutus);
     }
 
     private void setupListeners() {
@@ -202,6 +205,26 @@ public class MainActivity extends AppCompatActivity {
 
         btnLike.setOnClickListener(v -> {
             btnLike.setBackgroundResource(R.drawable.like_svgrepo_com__5_);
+        });
+        btnhome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawerLayout.setVisibility(INVISIBLE);
+            }
+        });
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+                startActivity(intent);
+            }
+        });
+        aboutus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, AboutActivity.class);
+                startActivity(intent);
+            }
         });
 
         bn.setOnItemSelectedListener(item -> {
