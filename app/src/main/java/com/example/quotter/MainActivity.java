@@ -120,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
         btnhome= findViewById(R.id.btnhome);
         settings= findViewById(R.id.settings);
         aboutus = findViewById(R.id.aboutus);
+        drawerLayout = findViewById(R.id.drawerLayout);
     }
 
     private void setupListeners() {
