@@ -10,7 +10,7 @@ This is an application called **"Quotter"** that displays motivational phrases w
 
 ---
 
-### 📸 Screenshots
+
 
 ### 📸 Screenshots
 
@@ -21,4 +21,6 @@ This is an application called **"Quotter"** that displays motivational phrases w
   <img src="https://github.com/user-attachments/assets/4caeb1c8-6439-4f54-8440-9ff498e4d299" style="width: 20%; max-width: 200px; margin: 5px;" />
 </p>
 
+
+try it out by yourself:
 
