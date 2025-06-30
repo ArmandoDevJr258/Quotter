@@ -22,6 +22,6 @@ This is an application called **"Quotter"** that displays motivational phrases w
 </p>
 
 
-Try it out by yourself: <a href="https://drive.google.com/drive/folders/13POIuxl2stWqtuT4dHoIzQNvt-T0OJHt" target="_blank" rel="noopener noreferrer">Download beta version</a>
+Try it out by yourself: <a href="https://drive.google.com/drive/folders/13POIuxl2stWqtuT4dHoIzQNvt-T0OJHt" target="_blank" >Download beta version</a>
 
 
