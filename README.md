@@ -15,10 +15,10 @@ This is an application called **"Quotter"** that displays motivational phrases w
 ### 📸 Screenshots
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/f2b4de59-00b8-4093-825a-30e73f975a61" style="width: 45%; max-width: 200px; margin: 5px;" />
-  <img src="https://github.com/user-attachments/assets/7da4654d-fdba-4d2a-97fb-fc29e8cfc006" style="width: 45%; max-width: 200px; margin: 5px;" />
-  <img src="https://github.com/user-attachments/assets/2195f655-5fbc-4e7e-bbe5-e957bb8114b8" style="width: 45%; max-width: 200px; margin: 5px;" />
-  <img src="https://github.com/user-attachments/assets/4caeb1c8-6439-4f54-8440-9ff498e4d299" style="width: 45%; max-width: 200px; margin: 5px;" />
+  <img src="https://github.com/user-attachments/assets/f2b4de59-00b8-4093-825a-30e73f975a61" style="width: 20%; max-width: 200px; margin: 5px;" />
+  <img src="https://github.com/user-attachments/assets/7da4654d-fdba-4d2a-97fb-fc29e8cfc006" style="width: 20%; max-width: 200px; margin: 5px;" />
+  <img src="https://github.com/user-attachments/assets/2195f655-5fbc-4e7e-bbe5-e957bb8114b8" style="width: 20%; max-width: 200px; margin: 5px;" />
+  <img src="https://github.com/user-attachments/assets/4caeb1c8-6439-4f54-8440-9ff498e4d299" style="width: 20%; max-width: 200px; margin: 5px;" />
 </p>
 
 
