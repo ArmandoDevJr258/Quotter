@@ -21,6 +21,7 @@ This is an application called **"Quotter"** that displays motivational phrases w
   <img src="https://github.com/user-attachments/assets/4caeb1c8-6439-4f54-8440-9ff498e4d299" style="width: 20%; max-width: 200px; margin: 5px;" />
 </p>
 
+watch the live demo :https://drive.google.com/drive/folders/13Voh8BcEIFr_44w0YUBgxPx--Q6qxQ9r
 
 Try it out by yourself: <a href="https://drive.google.com/drive/folders/13POIuxl2stWqtuT4dHoIzQNvt-T0OJHt" target="_blank" >Download beta version</a>
 
