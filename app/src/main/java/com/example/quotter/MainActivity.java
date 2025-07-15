@@ -136,6 +136,9 @@ public class MainActivity extends AppCompatActivity {
             showKeyboard();
         });
 
+
+        float fontsize=getIntent().getFloatExtra("fontsize",16f);
+        quoteText.setTextSize(fontsize);
         // Hide search input and list view
         btnClose.setOnClickListener(v -> {
             input.setVisibility(INVISIBLE);
@@ -385,4 +388,5 @@ public class MainActivity extends AppCompatActivity {
             mediaPlayer = null;
         }
     }
+
 }

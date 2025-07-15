@@ -20,6 +20,7 @@
             android:textSize="30sp"
             android:layout_marginLeft="150dp"
             android:textStyle="bold"
+            android:inputType="time"
             />
         <TextView
             android:layout_width="match_parent"
@@ -30,6 +31,58 @@
             android:layout_marginLeft="50dp"
             android:textStyle="bold"
             />
+
+        <Button
+            android:id="@+id/fontsize"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="285dp"
+            android:layout_marginTop="-50dp"
+            android:text="Medium"
+            android:background="@drawable/edittext"
+
+            />
+        <androidx.cardview.widget.CardView
+            android:id="@+id/changefontsize"
+            android:layout_width="330dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="-50dp"
+            android:visibility="invisible"
+            >
+            <Button
+                android:id="@+id/smallfont"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/edittext"
+                android:text="Small"
+                />
+            <Button
+                android:id="@+id/mediumfont"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="120dp"
+                android:background="@drawable/edittext"
+                android:text="Medium"
+                />
+            <Button
+                android:id="@+id/bigfont"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="230dp"
+                android:background="@drawable/edittext"
+                android:text="Big"
+                />
+
+
+
+
+        </androidx.cardview.widget.CardView>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="70dp"
@@ -49,11 +102,42 @@
             android:textStyle="bold" />
 
         <Switch
+            android:id="@+id/switchNotifications"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginTop="-40dp"
             android:layout_marginLeft="350dp"
 
+    />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Quote of the day"
+            android:layout_marginTop="10dp"
+            android:textSize="30sp"
+            android:layout_marginLeft="50dp"
+            android:textStyle="bold" />
 
-    /></LinearLayout>
+        <Switch
+            android:id="@+id/switchQuoteOfTheDay"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="-40dp"
+            android:layout_marginLeft="350dp"
+
+            />
+        <Button
+            android:id="@+id/btnsave"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="100dp"
+            android:text="Set Quote Time"
+            android:visibility="gone"
+            android:background="@drawable/edittext" />
+
+
+
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
