@@ -4,7 +4,6 @@ import static android.view.View.VISIBLE;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
-import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,7 +12,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Switch;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -29,9 +27,8 @@ public class SettingsActivity extends AppCompatActivity {
 
     private Switch switchNotifications, switchQuoteOfTheDay;
     private Button fontsize;
-    private CardView  changefontsize;
-    private Button btnsave, smallfont, bigfont, mediumfont;
-    private int hour, minute;
+    private CardView changefontsize;
+    private Button smallfont, bigfont, mediumfont;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,61 +47,35 @@ public class SettingsActivity extends AppCompatActivity {
         switchQuoteOfTheDay = findViewById(R.id.switchQuoteOfTheDay);
         fontsize = findViewById(R.id.fontsize);
 
-
         changefontsize = findViewById(R.id.changefontsize);
         smallfont = findViewById(R.id.smallfont);
         mediumfont = findViewById(R.id.mediumfont);
         bigfont = findViewById(R.id.bigfont);
 
-        // Font size change buttons
+        // Font size change
         fontsize.setOnClickListener(v -> changefontsize.setVisibility(VISIBLE));
-
         smallfont.setOnClickListener(v -> {
             openActivity(14f);
             fontsize.setText("small");
         });
-
         mediumfont.setOnClickListener(v -> {
             openActivity(18f);
             fontsize.setText("Medium");
         });
-
         bigfont.setOnClickListener(v -> {
             openActivity(24f);
             fontsize.setText("big");
         });
 
-        // Quote of the day switch
+        // Switch for Quote of the Day
         switchQuoteOfTheDay.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
-                btnsave.setVisibility(View.VISIBLE); // show save button
+                setDailyQuoteNotification(); // Automatically set for 8 AM
+                Toast.makeText(this, "Daily Quote enabled for 8:00 AM", Toast.LENGTH_SHORT).show();
             } else {
-                btnsave.setVisibility(View.GONE); // hide save button
-                cancelDailyQuoteNotification();   // cancel existing alarm (optional)
+                cancelDailyQuoteNotification();
+                Toast.makeText(this, "Daily Quote notification canceled", Toast.LENGTH_SHORT).show();
             }
-        });
-
-
-        // Save button to set time
-        btnsave.setOnClickListener(v -> {
-            TimePickerDialog timePickerDialog = new TimePickerDialog(SettingsActivity.this,
-                    (view, hourOfDay, minuteOfHour) -> {
-                        hour = hourOfDay;
-                        minute = minuteOfHour;
-
-                        // Save time
-                        SharedPreferences prefs = getSharedPreferences("quotterPrefs", MODE_PRIVATE);
-                        SharedPreferences.Editor editor = prefs.edit();
-                        editor.putInt("quote_hour", hour);
-                        editor.putInt("quote_minute", minute);
-                        editor.apply();
-
-                        // Set daily notification
-                        setDailyQuoteNotification(hour, minute);
-
-                        Toast.makeText(SettingsActivity.this, "Daily Quote set for " + hour + ":" + String.format("%02d", minute), Toast.LENGTH_SHORT).show();
-                    }, 12, 0, true);
-            timePickerDialog.show();
         });
     }
 
@@ -114,12 +85,13 @@ public class SettingsActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void setDailyQuoteNotification(int hour, int minute) {
+    private void setDailyQuoteNotification() {
         Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, hour);
-        calendar.set(Calendar.MINUTE, minute);
+        calendar.set(Calendar.HOUR_OF_DAY, 22);
+        calendar.set(Calendar.MINUTE, 50);
         calendar.set(Calendar.SECOND, 0);
 
+        // If time has passed today, schedule for tomorrow
         if (calendar.before(Calendar.getInstance())) {
             calendar.add(Calendar.DATE, 1);
         }
@@ -138,14 +110,14 @@ public class SettingsActivity extends AppCompatActivity {
             );
         }
     }
+
     private void cancelDailyQuoteNotification() {
         Intent intent = new Intent(this, QuoteNotificationReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(
+                this, 0, intent, PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         if (alarmManager != null) {
             alarmManager.cancel(pendingIntent);
-            Toast.makeText(this, "Daily Quote notification canceled", Toast.LENGTH_SHORT).show();
         }
     }
-
 }
