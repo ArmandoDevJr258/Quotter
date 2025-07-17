@@ -146,6 +146,107 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/quoteText" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:layout_editor_absoluteX="309dp"
+            tools:layout_editor_absoluteY="-37dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="100dp"
+                android:layout_marginTop="20dp"
+                android:text="Quotter"
+                android:textColor="#FFC107"
+                android:textSize="30sp" />
+
+            <Button
+                android:id="@+id/btnhome"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="250dp"
+                android:layout_marginTop="-50dp"
+                android:background="@drawable/menu_alt_1_svgrepo_com" />
+
+            <Button
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="100dp"
+                android:background="@drawable/settings_svgrepo_com" />
+
+            <TextView
+                android:id="@+id/settings"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="-40dp"
+                android:text="Settings"
+                android:textColor="@color/white"
+                android:textSize="30sp" />
+
+            <Button
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/question_svgrepo_com" />
+
+            <TextView
+                android:id="@+id/aboutus"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="-40dp"
+                android:text="About us"
+                android:textColor="@color/white"
+                android:textSize="30sp" />
+
+            <Button
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/tool_svgrepo_com" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="-40dp"
+                android:text="Support"
+                android:textColor="@color/white"
+                android:textSize="30sp" />
+
+            <Button
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/chat_emoji_smiley_svgrepo_com" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="-40dp"
+                android:text="Give us your feedback"
+                android:textColor="@color/white"
+                android:textSize="30sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="200dp"
+                android:text="Version 1.0"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+
+                />
+        </LinearLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!-- Buttons Row -->
@@ -199,100 +300,7 @@
 
 
         >
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:text="Quotter"
-                android:layout_marginTop="20dp"
-                android:textSize="30sp"
-                android:layout_marginLeft="100dp"
-                android:textColor="#FFC107"
-                />
-            <Button
-                android:id="@+id/btnhome"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="250dp"
-                android:background="@drawable/menu_alt_1_svgrepo_com"
-                android:layout_marginTop="-50dp"
-                />
-            <Button
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:background="@drawable/settings_svgrepo_com"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="100dp"
-                />
-            <TextView
-                android:id="@+id/settings"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:text="Settings"
-                android:layout_marginLeft="60dp"
-                android:layout_marginTop="-40dp"
-                android:textColor="@color/white"
-                android:textSize="30sp"/>
-            <Button
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:background="@drawable/question_svgrepo_com"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="30dp"
-                />
-            <TextView
-                android:id="@+id/aboutus"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:text="About us"
-                android:layout_marginLeft="60dp"
-                android:layout_marginTop="-40dp"
-                android:textColor="@color/white"
-                android:textSize="30sp"/>
-            <Button
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:background="@drawable/tool_svgrepo_com"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="30dp"
-                />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:text="Support"
-                android:layout_marginLeft="60dp"
-                android:layout_marginTop="-40dp"
-                android:textColor="@color/white"
-                android:textSize="30sp"/>
-            <Button
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:background="@drawable/chat_emoji_smiley_svgrepo_com"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="30dp"
-                />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:text="Give us your feedback"
-                android:layout_marginLeft="60dp"
-                android:layout_marginTop="-40dp"
-                android:textColor="@color/white"
-                android:textSize="30sp"/>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:text="Version 1.0"
-                android:layout_marginTop="200dp"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-
-                />
-        </LinearLayout>
     </androidx.drawerlayout.widget.DrawerLayout>
     <!-- Bottom Navigation -->
     <com.google.android.material.bottomnavigation.BottomNavigationView

@@ -5,6 +5,12 @@
         android:id="@+id/home"
         android:icon="@drawable/home_svgrepo_com"
         />
+
+    <item
+        android:title="explore"
+        android:id="@+id/explore"
+        android:icon="@drawable/explore_filled_svgrepo_com"
+        />
     <item
         android:title="saved"
         android:id="@+id/saved"

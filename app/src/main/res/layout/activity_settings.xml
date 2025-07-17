@@ -27,8 +27,8 @@
             android:layout_height="50dp"
             android:text="Change Fontsize"
             android:layout_marginTop="100dp"
-            android:textSize="30sp"
-            android:layout_marginLeft="50dp"
+            android:textSize="20sp"
+            android:layout_marginLeft="30dp"
             android:textStyle="bold"
             />
 
@@ -36,7 +36,7 @@
             android:id="@+id/fontsize"
             android:layout_width="100dp"
             android:layout_height="50dp"
-            android:layout_marginLeft="285dp"
+            android:layout_marginLeft="250dp"
             android:layout_marginTop="-50dp"
             android:text="Medium"
             android:background="@drawable/edittext"
@@ -46,7 +46,7 @@
             android:id="@+id/changefontsize"
             android:layout_width="330dp"
             android:layout_height="100dp"
-            android:layout_marginLeft="40dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="-50dp"
             android:visibility="invisible"
             >
@@ -87,26 +87,28 @@
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:text="change Theme"
-            android:layout_marginTop="30dp"
-            android:textSize="30sp"
-            android:layout_marginLeft="50dp"
+            android:layout_marginTop="-40dp"
+            android:textSize="20sp"
+            android:layout_marginLeft="30dp"
             android:textStyle="bold"
             />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:text="enable Notifications"
-            android:layout_marginTop="10dp"
-            android:textSize="30sp"
-            android:layout_marginLeft="50dp"
+            android:layout_marginTop="-10dp"
+            android:textSize="20sp"
+            android:layout_marginLeft="30dp"
             android:textStyle="bold" />
 
         <Switch
             android:id="@+id/switchNotifications"
-            android:layout_width="40dp"
+            android:layout_width="50dp"
             android:layout_height="40dp"
-            android:layout_marginTop="-40dp"
-            android:layout_marginLeft="350dp"
+            android:layout_marginTop="-45dp"
+            android:layout_marginLeft="300dp"
+            android:thumbTint="@color/white"
+            android:trackTint="@color/white"
 
     />
         <TextView
@@ -114,16 +116,18 @@
             android:layout_height="50dp"
             android:text="Quote of the day"
             android:layout_marginTop="10dp"
-            android:textSize="30sp"
-            android:layout_marginLeft="50dp"
+            android:textSize="20sp"
+            android:layout_marginLeft="30dp"
             android:textStyle="bold" />
 
         <Switch
             android:id="@+id/switchQuoteOfTheDay"
-            android:layout_width="40dp"
+            android:layout_width="50dp"
             android:layout_height="40dp"
-            android:layout_marginTop="-40dp"
-            android:layout_marginLeft="350dp"
+            android:layout_marginTop="-45dp"
+            android:layout_marginLeft="300dp"
+            android:thumbTint="@color/white"
+            android:trackTint="@color/white"
 
             />
         <Button

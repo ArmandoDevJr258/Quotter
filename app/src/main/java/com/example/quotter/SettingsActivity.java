@@ -7,6 +7,8 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,6 +17,7 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.graphics.Insets;
@@ -30,6 +33,7 @@ public class SettingsActivity extends AppCompatActivity {
     private CardView changefontsize;
     private Button smallfont, bigfont, mediumfont;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,13 +71,28 @@ public class SettingsActivity extends AppCompatActivity {
             fontsize.setText("big");
         });
 
+        switchNotifications.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+
+                    switchNotifications.getThumbDrawable().setTint(Color.BLUE);
+                } else {
+
+                    switchNotifications.getThumbDrawable().setTint(Color.WHITE);
+
+                }
+            }
+        });
         // Switch for Quote of the Day
         switchQuoteOfTheDay.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
                 setDailyQuoteNotification(); // Automatically set for 8 AM
                 Toast.makeText(this, "Daily Quote enabled for 8:00 AM", Toast.LENGTH_SHORT).show();
+                switchQuoteOfTheDay.getThumbDrawable().setTint(Color.BLUE);
             } else {
                 cancelDailyQuoteNotification();
+                switchQuoteOfTheDay.getThumbDrawable().setTint(Color.WHITE);
                 Toast.makeText(this, "Daily Quote notification canceled", Toast.LENGTH_SHORT).show();
             }
         });

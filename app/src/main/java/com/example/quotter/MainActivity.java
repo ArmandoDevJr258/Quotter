@@ -243,6 +243,11 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, MainActivity2.class));
                 return true;
             }
+            else if(itemId==R.id.explore){
+                startActivity(new Intent(MainActivity.this, ExploreActivity.class));
+                return true;
+
+            }
             return false;
         });
     }
