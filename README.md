@@ -21,8 +21,36 @@ This is an application called **"Quotter"** that displays motivational phrases w
   <img src="https://github.com/user-attachments/assets/4caeb1c8-6439-4f54-8440-9ff498e4d299" style="width: 20%; max-width: 200px; margin: 5px;" />
 </p>
 
-watch the live demoo :https://drive.google.com/drive/folders/13Voh8BcEIFr_44w0YUBgxPx--Q6qxQ9r
+<!-- Live Demo Button -->
+<p>Watch the live demo:</p>
+<a href="https://drive.google.com/drive/folders/13Voh8BcEIFr_44w0YUBgxPx--Q6qxQ9r" target="_blank" style="
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #2196F3;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+">
+    🎥 Watch Live Demo
+</a>
 
-Try it out by yourself: <a href="https://drive.google.com/drive/folders/13POIuxl2stWqtuT4dHoIzQNvt-T0OJHt" target="_blank" >Download beta version</a>
+
+<!-- Upgraded link with button styling -->
+<p>Try it out yourself:</p>
+<a href="https://drive.google.com/drive/folders/13POIuxl2stWqtuT4dHoIzQNvt-T0OJHt" target="_blank" style="
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+">
+    🚀 Download Beta Version
+</a>
+
 
 
