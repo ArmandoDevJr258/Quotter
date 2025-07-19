@@ -10,6 +10,7 @@
         android:title="explore"
         android:id="@+id/explore"
         android:icon="@drawable/explore_filled_svgrepo_com"
+        android:iconTint="@color/black"
         />
     <item
         android:title="saved"

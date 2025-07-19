@@ -146,6 +146,63 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/quoteText" />
 
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Buttons Row -->
+    <LinearLayout
+        android:id="@+id/bottomButtons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@id/bottomnavegation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <Button
+            android:id="@+id/btnlike"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="8dp"
+            android:background="@drawable/like_svgrepo_com__3_" />
+
+        <Button
+            android:id="@+id/btnshare"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="8dp"
+            android:background="@drawable/share_svgrepo_com" />
+
+        <Button
+            android:id="@+id/btnsave"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="8dp"
+            android:background="@drawable/bookmark_filled_svgrepo_com" />
+
+        <Button
+            android:id="@+id/btnfetch"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="8dp"
+            android:background="@drawable/random_svgrepo_com" />
+    </LinearLayout>
+
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawerLayout"
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:background="@color/black"
+        android:visibility="invisible"
+
+
+
+
+
+        >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -157,8 +214,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginLeft="100dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="15dp"
                 android:text="Quotter"
+                android:textStyle="bold"
                 android:textColor="#FFC107"
                 android:textSize="30sp" />
 
@@ -225,7 +283,7 @@
                 android:layout_height="30dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="30dp"
-                android:background="@drawable/chat_emoji_smiley_svgrepo_com" />
+                android:background="@drawable/email_svgrepo_com"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -246,60 +304,6 @@
 
                 />
         </LinearLayout>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <!-- Buttons Row -->
-    <LinearLayout
-        android:id="@+id/bottomButtons"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@id/bottomnavegation"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <Button
-            android:id="@+id/btnlike"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_margin="8dp"
-            android:background="@drawable/like_svgrepo_com__3_" />
-
-        <Button
-            android:id="@+id/btnshare"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_margin="8dp"
-            android:background="@drawable/share_svgrepo_com" />
-
-        <Button
-            android:id="@+id/btnsave"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_margin="8dp"
-            android:background="@drawable/bookmark_filled_svgrepo_com" />
-
-        <Button
-            android:id="@+id/btnfetch"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_margin="8dp"
-            android:background="@drawable/random_svgrepo_com" />
-    </LinearLayout>
-
-    <androidx.drawerlayout.widget.DrawerLayout
-        android:id="@+id/drawerLayout"
-        android:layout_width="300dp"
-        android:layout_height="match_parent"
-        android:background="@color/black"
-        android:visibility="invisible"
-
-
-
-        >
 
     </androidx.drawerlayout.widget.DrawerLayout>
     <!-- Bottom Navigation -->

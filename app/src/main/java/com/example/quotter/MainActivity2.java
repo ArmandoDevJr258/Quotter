@@ -38,11 +38,13 @@ public class MainActivity2 extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String selectedQuote = quotes.get(position);
-                dbHelper.deleteQuote(selectedQuote);
-                quotes.remove(position);
-                adapter.notifyDataSetChanged();
-                Toast.makeText(MainActivity2.this, "Quote deleted", Toast.LENGTH_SHORT).show();
+              String selectedQuote = quotes.get(position);
+               //dbHelper.deleteQuote(selectedQuote);
+
+                Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                shareIntent.setType("text/plain");
+                shareIntent.putExtra(Intent.EXTRA_TEXT, selectedQuote + "\n");
+                startActivity(Intent.createChooser(shareIntent, "Share via"));
             }
         });
 
@@ -53,6 +55,11 @@ public class MainActivity2 extends AppCompatActivity {
                     startActivity(new Intent(MainActivity2.this, MainActivity.class));
                     return true;
                 }
+                else if(item.getItemId() == R.id.explore){
+                    startActivity(new Intent(MainActivity2.this, ExploreActivity.class));
+                    return true;
+                }
+
                 return false;
             }
         });

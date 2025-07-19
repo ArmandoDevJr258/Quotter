@@ -15,10 +15,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Quotter"
         tools:targetApi="31">
+
         <activity
             android:name=".ExploreActivity"
-            android:exported="false" />
-        <!-- ✅ RECEIVER should be inside the application -->
+            android:exported="false" /> <!-- ✅ RECEIVER should be inside the application -->
         <receiver
             android:name=".QuoteNotificationReceiver"
             android:exported="true" /> <!-- Activities -->
@@ -40,6 +40,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

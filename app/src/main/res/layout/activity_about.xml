@@ -17,7 +17,8 @@
             android:layout_height="50dp"
             android:text="About us"
             android:layout_marginTop="100dp"
-            android:textSize="40sp"
+            android:textSize="30sp"
+            android:textColor="#FFC107"
             android:layout_marginLeft="130dp"
             android:textStyle="bold"
             />

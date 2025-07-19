@@ -20,6 +20,7 @@
             android:textSize="30sp"
             android:layout_marginLeft="150dp"
             android:textStyle="bold"
+            android:textColor="#FFC107"
             android:inputType="time"
             />
         <TextView
