@@ -1,3 +1,5 @@
+### Quotter
+
 <p align="center">
   <img src="https://github.com/user-attachments/assets/96c6eb00-f704-4821-892a-39ff5005867e" alt="Quotter Banner" width="300" style="border-radius: 12px;" />
 </p>
