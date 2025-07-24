@@ -41,7 +41,7 @@ This is an application called **"Quotter"** that displays motivational phrases w
 
 <!-- Upgraded link with button styling -->
 <p>Try it out yourself:</p>
-<a href="https://drive.google.com/drive/folders/13POIuxl2stWqtuT4dHoIzQNvt-T0OJHt" target="_blank" style="
+<a href="https://drive.google.com/drive/folders/13POIuxl2stWqtuT4dHoIzQNvt-T0OJHt " target="_blank" style="
     display: inline-block;
     padding: 12px 24px;
     background-color: #4CAF50;
