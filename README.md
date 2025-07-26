@@ -8,11 +8,8 @@
 
 # About the App
 
-This is an appli![Screenshot_20250726_202530_Quotter](https://github.com/user-attachments/assets/11a2f1e6-7d69-4048-8aaf-286aec88ab15)
+This is an appl
 cation called **"Quotter"** that displays motivational phrases with just a click on a button — including **search**, **share**, **save**, and **like** features.
-
-![Screenshot_20250726_202530_Quotter](https://github.com/user-attachments/assets/d130ca86-5384-4087-8e0c-ec1a309b7fef)
-
 
 
 
