@@ -27,7 +27,10 @@ cation called **"Quotter"** that displays motivational phrases with just a click
 
 
 
-# version 2.50.00.0 releaee features:
+# version 2.50.00.0
+
+
+ release features:
 
 explore tab
 quote of the day
