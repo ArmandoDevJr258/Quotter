@@ -8,8 +8,7 @@
 
 # About the App
 
-This is an appl
-cation called **"Quotter"** that displays motivational phrases with just a click on a button — including **search**, **share**, **save**, and **like** features.
+This is an applcation called **"Quotter"** that displays motivational phrases with just a click on a button — including **search**, **share**, **save**, and **like** features.
 
 
 
