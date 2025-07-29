@@ -13,11 +13,12 @@ This is an applcation called **"Quotter"** that displays motivational phrases wi
 
 
 
+
 ### 📸 Screenshots
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/d130ca86-5384-4087-8e0c-ec1a309b7fef" style="width: 20%; max-width: 200px; margin: 5px;" />
-  <img src="https://github.com/user-attachments/assets/7da4654d-fdba-4d2a-97fb-fc29e8cfc006" style="width: 20%; max-width: 200px; margin: 5px;" />
+  <img src="https://github.com/user-attachments/assets/783ef0a9-96cf-4e4b-9938-fc0e9f28bc67" style="width: 20%; max-width: 200px; margin: 5px;" />
+  <img src="https://github.com/user-attachments/assets/d2e9f58d-55bd-4fcf-80a4-f3aaea404bb8" style="width: 20%; max-width: 200px; margin: 5px;" />
   <img src="https://github.com/user-attachments/assets/2195f655-5fbc-4e7e-bbe5-e957bb8114b8" style="width: 20%; max-width: 200px; margin: 5px;" />
   <img src="https://github.com/user-attachments/assets/4caeb1c8-6439-4f54-8440-9ff498e4d299" style="width: 20%; max-width: 200px; margin: 5px;" />
 </p>
