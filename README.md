@@ -32,10 +32,10 @@ This is an applcation called **"Quotter"** that displays motivational phrases wi
 
  release features:
 
-explore tab
-quote of the day
-categories
-supre quote
+explore tab,
+quote of the day,
+categories,
+suprise quote
 
 
 <!-- Live Demo Button -->
